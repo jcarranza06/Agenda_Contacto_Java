@@ -14,6 +14,8 @@ public class Main {
 		
 		
 		Contacto[] contactos = new Contacto[50];
+		
+		
 		for (int i =0;i<49;i++) {
 			contactos[i]=new Contacto("juan", 315, "wom", "juan@cumama.com", "colombia");
 			
