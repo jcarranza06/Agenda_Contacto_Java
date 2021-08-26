@@ -2,6 +2,9 @@ package data;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Iterator;
+
+import logic.Main;
 
 public class Agenda implements Serializable{
 
@@ -29,5 +32,34 @@ public class Agenda implements Serializable{
 	public void addContacto(Contacto contacto) {
 		listaContactos.add(contacto);
 	}
+	public void modificarContacto(String[] variables) {
+		System.out.println(variables[0]+ variables[1]+variables[2]+variables[3]+variables[4]+variables[5]);
+		
+		listaContactos.get(getContactoPorId(Integer.parseInt(variables[5]))).setNombreContacto(variables[0]);
+		listaContactos.get(getContactoPorId(Integer.parseInt(variables[5]))).setTelefono(Integer.parseInt(variables[1]));
+		listaContactos.get(getContactoPorId(Integer.parseInt(variables[5]))).setOperadora(variables[2]);
+		listaContactos.get(getContactoPorId(Integer.parseInt(variables[5]))).setEmail(variables[3]);
+		listaContactos.get(getContactoPorId(Integer.parseInt(variables[5]))).setPais(variables[4]);
+		
+		Main.vp.actualizarContactoUi(listaContactos.get(getContactoPorId(Integer.parseInt(variables[5]))));
+		System.out.println("contact modificado " + getContactoPorId(Integer.parseInt(variables[5])));
+	}
+	public Integer getContactoPorId(int i) {
+		int a=-1;
+		for (int p=0; p<listaContactos.size();p++) {
+			System.out.println(p);
+			if (i==(listaContactos.get(p)).getId()) {
+				a=p;
+			}
+		}
+		
+		return a;
+	}
 
+	@Override
+	public String toString() {
+		return "Agenda [listaContactos=" + listaContactos + "]";
+	}
+	
+	
 }

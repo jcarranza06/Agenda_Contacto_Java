@@ -21,6 +21,8 @@ import javax.swing.BoxLayout;
 import javax.swing.ScrollPaneConstants;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Iterator;
+
 import javax.swing.JTextField;
 
 public class VentanaPrincipal extends JFrame {
@@ -32,6 +34,11 @@ public class VentanaPrincipal extends JFrame {
 	JPanel panelGrandeFormulario;
 	private JTextField nombre, telefono, operadora, email, pais;
 	Main main;
+	int contadorId=0;
+	String[] variablesModificar = new String[6];
+	boolean modificar=false;
+	
+	JButton btnFuncionCrear, btnFuncionModificar;
 	
 	public VentanaPrincipal() {
 		setResizable(false);
@@ -68,7 +75,7 @@ public class VentanaPrincipal extends JFrame {
 			}
 		});
 		panel_1.add(btnNewButton_1);
-		
+		btnNewButton_1.setVisible(false);
 		
 		JPanel panel_2 = new JPanel();
 		panel.add(panel_2, BorderLayout.CENTER);
@@ -89,8 +96,8 @@ public class VentanaPrincipal extends JFrame {
 		scrollPane.setViewportView(ContenedorContactos);
 		ContenedorContactos.setLayout(new BoxLayout(ContenedorContactos, BoxLayout.Y_AXIS));
 		
-		JPanel contacto = new JPanel();
-		ContenedorContactos.add(contacto);
+		/*JPanel contacto = new JPanel();
+		ContenedorContactos.add(contacto);*/
 		
 		
 		panelGrandeFormulario = new JPanel();
@@ -151,29 +158,29 @@ public class VentanaPrincipal extends JFrame {
 		panelPais.add(pais);
 		pais.setColumns(10);
 		
-		JButton btnFuncionCrear = new JButton("Crear");
+		btnFuncionCrear = new JButton("Crear");
 		btnFuncionCrear.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				try {
-					Main.crearContacto(nombre.getText(), Integer.parseInt(telefono.getText())  , operadora.getText(), email.getText(), pais.getText() );
-					nombre.setText("");
-					operadora.setText("");
-					telefono.setText("");
-					email.setText("");
-					pais.setText("");
-
-				} catch (Exception e2) {
-			        JOptionPane.showMessageDialog(null, "Inserte valores validos");
-				}
-				System.out.println(":D");
-				String cadena = nombre.getText();
-				System.out.println(cadena);
-				
+				agregarContacto();
 			}
 		});
 		panelGrandeFormulario.add(btnFuncionCrear);
 		
+		btnFuncionModificar = new JButton("Modificar");
+		btnFuncionModificar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				variablesModificar[0]=nombre.getText();variablesModificar[1]=telefono.getText();variablesModificar[2]=operadora.getText();variablesModificar[3]=email.getText();variablesModificar[4]=pais.getText();
+				Main.setVariablesModificar(variablesModificar);
+				Main.modificarContacto1();
+				vaciarJTextField();
+				setVisibleContactos();
+				visibleBoton(0);
+			}
+		});
+		panelGrandeFormulario.add(btnFuncionModificar);
+		visibleBoton(0);
 		
 	}
 	public static void addContacto(ContactoUI contacto) {
@@ -190,4 +197,67 @@ public class VentanaPrincipal extends JFrame {
 		this.panelGrandeFormulario.setVisible(true);
 		System.out.println(2);
 	}
+	public void agregarContacto() {
+		try {
+			Main.crearContacto(nombre.getText(), Integer.parseInt(telefono.getText())  , operadora.getText(), email.getText(), pais.getText(), (contadorId));
+			vaciarJTextField();
+			
+			contadorId++;
+			JOptionPane.showMessageDialog(null, "Contacto Agregado");
+			setVisibleContactos();
+		} catch (Exception e2) {
+	        JOptionPane.showMessageDialog(null, "Inserte valores validos");
+		}
+		System.out.println(":D");
+		
+	}
+	
+	public void modificarContacto(int i) {
+		variablesModificar = new String[6];
+		Contacto contMod= getContactoUIPorId(i).getContacto();
+		System.out.println("modificable: "+ contMod);
+		nombre.setText(contMod.getNombreContacto());
+		telefono.setText(Integer.toString(contMod.getTelefono()));
+		operadora.setText(contMod.getOperadora());
+		email.setText(contMod.getEmail());
+		pais.setText(contMod.getPais());
+		
+		
+		variablesModificar[5]=Integer.toString(i);
+		
+	}
+	public ContactoUI getContactoUIPorId(int i) {
+		ContactoUI a=null;
+		for (int p=0; p<ContenedorContactos.getComponentCount();p++) {
+			ContactoUI b= (ContactoUI) ContenedorContactos.getComponent(p);
+			Contacto bc= b.getContacto();
+			if (i==bc.getId()) {
+				a = (ContactoUI)ContenedorContactos.getComponent(p);
+				
+			}	
+		}
+		return a;
+	}
+	
+	public void  actualizarContactoUi(Contacto con) {
+		getContactoUIPorId(con.getId()).modificarContactoUI(con);
+	}
+	public void vaciarJTextField() {
+		nombre.setText("");
+		operadora.setText("");
+		telefono.setText("");
+		email.setText("");
+		pais.setText("");
+	}
+	public void visibleBoton(int i) {
+		if (i==0) {
+			btnFuncionCrear.setVisible(true);
+			btnFuncionModificar.setVisible(false);
+		}else if (i==1) {
+			btnFuncionCrear.setVisible(false);
+			btnFuncionModificar.setVisible(true);
+		}
+		
+	}
+	
 }

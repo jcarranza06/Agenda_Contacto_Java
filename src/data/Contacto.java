@@ -6,11 +6,13 @@ import java.io.Serializable;
 public class Contacto implements Serializable{
     
 	private static final long serialVersionUID = 1L;
+	final int id;
 	String nombreContacto;
     int telefono;
     String operadora;
     String email;
     String pais;
+    ContactoUI contUI;
 
     public void setNombreContacto(String nombreContacto){
         this.nombreContacto = nombreContacto;
@@ -28,6 +30,11 @@ public class Contacto implements Serializable{
         this.telefono = telefono;
     }
 
+    public int getId() {
+        return this.id;
+    }
+
+    
     public String getOperadora() {
         return this.operadora;
     }
@@ -52,13 +59,31 @@ public class Contacto implements Serializable{
     }
 
 
-    public Contacto(String nombreContacto, int telefono, String operadora, String email, String pais){
+    public Contacto(String nombreContacto, int telefono, String operadora, String email, String pais, int id){
         this.nombreContacto = nombreContacto;
         this.telefono = telefono;
         this.operadora = operadora;
         this.email = email;
         this.pais = pais;
+        this.id=id;
         
-        ContactoUI juanUi=new ContactoUI(this);
+        contUI =new ContactoUI(this);
+        System.out.println(contUI);
     }
+    public Contacto(String nombreContacto, int telefono, String operadora, String email, String pais, int id, boolean flag){
+        this.nombreContacto = nombreContacto;
+        this.telefono = telefono;
+        this.operadora = operadora;
+        this.email = email;
+        this.pais = pais;
+        this.id=id;
+        
+    }
+
+	@Override
+	public String toString() {
+		return "Contacto [id=" + id + ", nombreContacto=" + nombreContacto + ", telefono=" + telefono + ", operadora="
+				+ operadora + ", email=" + email + ", pais=" + pais + "]";
+	}
+    
 }
