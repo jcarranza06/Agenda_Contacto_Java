@@ -8,7 +8,7 @@ import data.Agenda;
 import data.Contacto;
 
 public class Main {
-	static Agenda agenda;
+	public static Agenda agenda;
 	public static VentanaPrincipal vp;
 	static String[] variablesModificar=new String[6];
 	

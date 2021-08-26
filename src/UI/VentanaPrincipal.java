@@ -11,6 +11,7 @@ import javax.swing.border.EmptyBorder;
 import data.Agenda;
 import data.Contacto;
 import logic.Main;
+import logic.CargarDatos;
 import logic.GuardarDatos;
 
 import javax.swing.JButton;
@@ -173,6 +174,7 @@ public class VentanaPrincipal extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				agregarContacto();
+				GuardarDatos.escribir(Main.agenda.getListaContactos());
 			}
 		});
 		panelGrandeFormulario.add(btnFuncionCrear);

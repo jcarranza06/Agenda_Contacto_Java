@@ -8,6 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import data.Contacto;
+import logic.CargarDatos;
 import logic.Main;
 
 public class ContactoUI extends JPanel{
@@ -51,7 +52,7 @@ public class ContactoUI extends JPanel{
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				System.out.println("elim"+ contacto.getId());
-				
+				CargarDatos.leer();		
 			}
 		});
 		this.add(btnEliminar);
