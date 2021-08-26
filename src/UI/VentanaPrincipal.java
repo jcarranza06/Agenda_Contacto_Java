@@ -11,6 +11,7 @@ import javax.swing.border.EmptyBorder;
 import data.Agenda;
 import data.Contacto;
 import logic.Main;
+import logic.GuardarDatos;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
