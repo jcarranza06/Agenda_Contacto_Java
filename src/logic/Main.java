@@ -48,5 +48,11 @@ public class Main {
 		agenda =  new Agenda();
 	}
 	
+	public static void cerrar() {
+		System.out.println("bye");
+		System.exit(0);
+		System.out.println("no i");
+	}
+	
 			
 }

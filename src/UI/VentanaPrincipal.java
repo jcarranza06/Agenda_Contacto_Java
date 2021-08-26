@@ -24,6 +24,8 @@ import java.awt.event.MouseEvent;
 import java.util.Iterator;
 
 import javax.swing.JTextField;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class VentanaPrincipal extends JFrame {
 
@@ -48,6 +50,14 @@ public class VentanaPrincipal extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+		
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosed(WindowEvent e) {
+				System.out.println("cierrelo");
+				Main.cerrar();
+			}
+		});
 		iniciarComponentes();
 	}
 	public void iniciarComponentes() {
