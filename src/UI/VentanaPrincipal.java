@@ -8,10 +8,13 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import data.Agenda;
 import data.Contacto;
+import logic.Main;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.BoxLayout;
 import javax.swing.ScrollPaneConstants;
@@ -27,6 +30,7 @@ public class VentanaPrincipal extends JFrame {
 	JPanel panelGrandeContactos;
 	JPanel panelGrandeFormulario;
 	private JTextField nombre, telefono, operadora, email, pais;
+	Main main;
 	
 	public VentanaPrincipal() {
 		setResizable(false);
@@ -36,7 +40,6 @@ public class VentanaPrincipal extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
-		
 		iniciarComponentes();
 	}
 	public void iniciarComponentes() {
@@ -151,6 +154,20 @@ public class VentanaPrincipal extends JFrame {
 		btnFuncionCrear.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				try {
+					Main.crearContacto(nombre.getText(), Integer.parseInt(telefono.getText())  , operadora.getText(), email.getText(), pais.getText() );
+					nombre.setText("");
+					operadora.setText("");
+					telefono.setText("");
+					email.setText("");
+					pais.setText("");
+
+				} catch (Exception e2) {
+			        JOptionPane.showMessageDialog(null, "Inserte valores validos");
+				}
+				System.out.println(":D");
+				String cadena = nombre.getText();
+				System.out.println(cadena);
 				
 			}
 		});
