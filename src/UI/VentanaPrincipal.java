@@ -27,6 +27,7 @@ import java.util.Iterator;
 import javax.swing.JTextField;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import javax.swing.ImageIcon;
 
 public class VentanaPrincipal extends JFrame {
 
@@ -40,6 +41,9 @@ public class VentanaPrincipal extends JFrame {
 	int contadorId=0;
 	String[] variablesModificar = new String[6];
 	boolean modificar=false;
+	
+	JLabel labelINombre, labelITelefono, labelIOperadora, labelIEmail, labelIPais;
+	
 	
 	JButton btnFuncionCrear, btnFuncionModificar;
 	
@@ -70,6 +74,7 @@ public class VentanaPrincipal extends JFrame {
 		panel.add(panel_1, BorderLayout.NORTH);
 		
 		JButton btnCrear = new JButton("Nuevo");
+		
 		btnCrear.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -106,6 +111,27 @@ public class VentanaPrincipal extends JFrame {
 		ContenedorContactos.setBounds(23, 27, 124, 103);
 		scrollPane.setViewportView(ContenedorContactos);
 		ContenedorContactos.setLayout(new BoxLayout(ContenedorContactos, BoxLayout.Y_AXIS));
+		
+		JPanel paneIInfo = new JPanel();
+		
+		paneIInfo.setBounds(280, 23, 140, 240);
+		panelGrandeContactos.add(paneIInfo);
+		paneIInfo.setLayout(new BoxLayout(paneIInfo, BoxLayout.Y_AXIS));
+		
+		labelINombre = new JLabel("Nombre: ");
+		paneIInfo.add(labelINombre);
+		
+		labelITelefono = new JLabel("telefono: ");
+		paneIInfo.add(labelITelefono);
+		
+		labelIOperadora = new JLabel("Operadora: ");
+		paneIInfo.add(labelIOperadora);
+		
+		labelIEmail = new JLabel("Email: ");
+		paneIInfo.add(labelIEmail);
+		
+		labelIPais = new JLabel("Pais: ");
+		paneIInfo.add(labelIPais);
 		
 		/*JPanel contacto = new JPanel();
 		ContenedorContactos.add(contacto);*/
@@ -251,6 +277,20 @@ public class VentanaPrincipal extends JFrame {
 		return a;
 	}
 	
+	public Integer getIndexContactoUIPorId(int i) {
+		int q=-1;
+		ContactoUI a=null;
+		for (int p=0; p<ContenedorContactos.getComponentCount();p++) {
+			ContactoUI b= (ContactoUI) ContenedorContactos.getComponent(p);
+			Contacto bc= b.getContacto();
+			if (i==bc.getId()) {
+				a = (ContactoUI)ContenedorContactos.getComponent(p);
+				q=p;
+			}	
+		}
+		return q;
+	}
+	
 	public void  actualizarContactoUi(Contacto con) {
 		getContactoUIPorId(con.getId()).modificarContactoUI(con);
 	}
@@ -271,5 +311,23 @@ public class VentanaPrincipal extends JFrame {
 		}
 		
 	}
+	public void eliminarContactoUI(int i) {
+		int a=getIndexContactoUIPorId(i);
+		System.out.println("eliminando... "+ a);
+		ContenedorContactos.remove(a);
+		System.out.println("eliminado");
+		ContenedorContactos.setVisible(false);
+		ContenedorContactos.setVisible(true);
+	}
 	
+	public void showContacto (int id) {
+		System.out.println("oprimido: "+id);
+		Contacto a = getContactoUIPorId(id).getContacto();
+
+		labelINombre.setText("Nombre: " + a.getNombreContacto());
+		labelITelefono.setText("Telefono: " + Integer.toString(a.getTelefono()));
+		labelIOperadora.setText("Operadora: " + a.getOperadora());
+		labelIEmail.setText("Email: " + a.getEmail());
+		labelIPais.setText("Pais: " + a.getPais());
+	}
 }

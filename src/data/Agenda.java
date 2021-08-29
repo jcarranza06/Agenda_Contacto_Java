@@ -55,6 +55,11 @@ public class Agenda implements Serializable{
 		
 		return a;
 	}
+	
+	public void eliminarContacto(int id) {
+		int index = getContactoPorId(id);
+		listaContactos.remove(index);
+	}
 
 	@Override
 	public String toString() {

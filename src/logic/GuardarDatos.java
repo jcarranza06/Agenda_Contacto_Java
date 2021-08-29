@@ -12,8 +12,7 @@ import logic.CargarDatos;
 
 
 public class GuardarDatos {
-
-
+	
 	public static void escribir(ArrayList<Contacto> cargaContactos) {
 		String ruta = "Contacto.obj";
 
@@ -36,7 +35,6 @@ public class GuardarDatos {
 			System.out.println(ex.getMessage());
 		}
 	}
-	
 	
 
 }

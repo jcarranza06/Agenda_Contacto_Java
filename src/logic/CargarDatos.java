@@ -23,7 +23,7 @@ public class CargarDatos {
         ArrayList<Contacto> contactosLeidos = new ArrayList<Contacto>();
 
         try(ObjectInputStream inStr = new ObjectInputStream(new FileInputStream("Contacto.obj"))){
-
+        	
             while(true){
                 Contacto contactoLeer = (Contacto)inStr.readObject();
                 System.out.println("Nombre: " + contactoLeer.getNombreContacto());

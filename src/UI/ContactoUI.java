@@ -1,11 +1,15 @@
 package UI;
 
+import java.awt.Color;
+import java.awt.Insets;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 import data.Contacto;
 import logic.CargarDatos;
@@ -35,7 +39,19 @@ public class ContactoUI extends JPanel{
 		Nombre = new JLabel(contacto.getNombreContacto());
 		this.add(Nombre);
 		
-		JButton btnModificar = new JButton("M");
+		addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				Main.vp.showContacto(contacto.getId());
+			}
+		});
+		
+		JButton btnModificar = new JButton(" ");
+		btnModificar.setBorder(null);
+		btnModificar.setIcon(new ImageIcon("C:\\Users\\juane\\OneDrive\\Documentos\\AgendaContactosJava\\img\\btnSencillo-simple.jpg"));
+		btnModificar.setMargin(new Insets(0, 0, 0, 0));
+		btnModificar.setHorizontalTextPosition(SwingConstants.CENTER);
 		btnModificar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -47,12 +63,14 @@ public class ContactoUI extends JPanel{
 		this.add(btnModificar);
 		
 		
-		JButton btnEliminar = new JButton("E");
+		JButton btnEliminar = new JButton(" ");
+		
 		btnEliminar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				System.out.println("elim"+ contacto.getId());
-				CargarDatos.leer();		
+				//CargarDatos.leer();		
+				Main.eliminarContacto(contacto.getId());
 			}
 		});
 		this.add(btnEliminar);
@@ -64,5 +82,11 @@ public class ContactoUI extends JPanel{
 		this.contacto=contacte;
 		Nombre.setText(contacto.getNombreContacto());
 	}
+
+	@Override
+	public String toString() {
+		return "ContactoUI [Nombre=" + Nombre + ", contacto=" + contacto + "]";
+	}
+	
 	
 }

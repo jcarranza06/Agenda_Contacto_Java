@@ -53,6 +53,10 @@ public class Main {
 		System.exit(0);
 		System.out.println("no i");
 	}
+	public static void eliminarContacto(int id) {
+		agenda.eliminarContacto(id);
+		vp.eliminarContactoUI(id);
+	}
 	
 			
 }
