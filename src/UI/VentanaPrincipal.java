@@ -28,6 +28,9 @@ import javax.swing.JTextField;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.ImageIcon;
+import java.awt.Color;
+import javax.swing.SwingConstants;
+import java.awt.Font;
 
 public class VentanaPrincipal extends JFrame {
 
@@ -52,6 +55,7 @@ public class VentanaPrincipal extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 600, 470);
 		contentPane = new JPanel();
+		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
@@ -67,13 +71,21 @@ public class VentanaPrincipal extends JFrame {
 	}
 	public void iniciarComponentes() {
 		JPanel panel = new JPanel();
+		panel.setBackground(Color.WHITE);
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(new BorderLayout(0, 0));
 		
 		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(Color.WHITE);
 		panel.add(panel_1, BorderLayout.NORTH);
 		
 		JButton btnCrear = new JButton("Nuevo");
+		btnCrear.setFont(new Font("Dialog", Font.BOLD, 14));
+		btnCrear.setForeground(Color.WHITE);
+		btnCrear.setRolloverIcon(new ImageIcon(VentanaPrincipal.class.getResource("/img/imgBtnNuevo-rollOver.png")));
+		btnCrear.setBorder(null);
+		btnCrear.setHorizontalTextPosition(SwingConstants.CENTER);
+		btnCrear.setIcon(new ImageIcon(VentanaPrincipal.class.getResource("/img/imgBtnNuevo-simple.png")));
 		
 		btnCrear.addMouseListener(new MouseAdapter() {
 			@Override
@@ -83,7 +95,13 @@ public class VentanaPrincipal extends JFrame {
 		});
 		panel_1.add(btnCrear);
 		
-		JButton btnNewButton_1 = new JButton("New button");
+		JButton btnNewButton_1 = new JButton("atras");
+		btnNewButton_1.setFont(new Font("Dialog", Font.BOLD, 14));
+		btnNewButton_1.setForeground(Color.WHITE);
+		btnNewButton_1.setRolloverIcon(new ImageIcon(VentanaPrincipal.class.getResource("/img/imgBtnNuevo-rollOver.png")));
+		btnNewButton_1.setHorizontalTextPosition(SwingConstants.CENTER);
+		btnNewButton_1.setBorder(null);
+		btnNewButton_1.setIcon(new ImageIcon(VentanaPrincipal.class.getResource("/img/imgBtnNuevo-simple.png")));
 		btnNewButton_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -91,46 +109,60 @@ public class VentanaPrincipal extends JFrame {
 			}
 		});
 		panel_1.add(btnNewButton_1);
-		btnNewButton_1.setVisible(false);
+		//btnNewButton_1.setVisible(false);
 		
 		JPanel panel_2 = new JPanel();
+		panel_2.setBackground(Color.WHITE);
 		panel.add(panel_2, BorderLayout.CENTER);
 		panel_2.setLayout(null);
 		
 		panelGrandeContactos = new JPanel();
+		panelGrandeContactos.setOpaque(false);
 		panelGrandeContactos.setBounds(0, 0, 494, 337);
 		panel_2.add(panelGrandeContactos);
 		panelGrandeContactos.setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.getViewport().setBackground((Color.WHITE));;
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		scrollPane.setBounds(21, 23, 204, 275);
+		scrollPane.setBounds(21, 23, 240, 275);
 		panelGrandeContactos.add(scrollPane);
 		
 		ContenedorContactos = new JPanel();
+		ContenedorContactos.setBackground(Color.WHITE);
 		ContenedorContactos.setBounds(23, 27, 124, 103);
 		scrollPane.setViewportView(ContenedorContactos);
 		ContenedorContactos.setLayout(new BoxLayout(ContenedorContactos, BoxLayout.Y_AXIS));
 		
 		JPanel paneIInfo = new JPanel();
+		paneIInfo.setOpaque(false);
 		
-		paneIInfo.setBounds(280, 23, 140, 240);
+		paneIInfo.setBounds(280, 23, 220, 240);
 		panelGrandeContactos.add(paneIInfo);
 		paneIInfo.setLayout(new BoxLayout(paneIInfo, BoxLayout.Y_AXIS));
 		
+		JLabel labelIdes = new JLabel("<html>Seleccione un contacto para verlo a detalle:<br>  <br> </html>");
+		labelIdes.setFont(new Font("Dialog", Font.BOLD, 13));
+		paneIInfo.add(labelIdes);
+		
 		labelINombre = new JLabel("Nombre: ");
+		labelINombre.setFont(new Font("Dialog", Font.BOLD, 13));
 		paneIInfo.add(labelINombre);
 		
 		labelITelefono = new JLabel("telefono: ");
+		labelITelefono.setFont(new Font("Dialog", Font.BOLD, 13));
 		paneIInfo.add(labelITelefono);
 		
 		labelIOperadora = new JLabel("Operadora: ");
+		labelIOperadora.setFont(new Font("Dialog", Font.BOLD, 13));
 		paneIInfo.add(labelIOperadora);
 		
 		labelIEmail = new JLabel("Email: ");
+		labelIEmail.setFont(new Font("Dialog", Font.BOLD, 13));
 		paneIInfo.add(labelIEmail);
 		
 		labelIPais = new JLabel("Pais: ");
+		labelIPais.setFont(new Font("Dialog", Font.BOLD, 13));
 		paneIInfo.add(labelIPais);
 		
 		/*JPanel contacto = new JPanel();
@@ -138,6 +170,7 @@ public class VentanaPrincipal extends JFrame {
 		
 		
 		panelGrandeFormulario = new JPanel();
+		panelGrandeFormulario.setOpaque(false);
 		panelGrandeFormulario.setBounds(0, 0, 494, 337);
 		panel_2.add(panelGrandeFormulario);
 		panelGrandeFormulario.setLayout(new BoxLayout(panelGrandeFormulario, BoxLayout.Y_AXIS));
@@ -147,6 +180,7 @@ public class VentanaPrincipal extends JFrame {
 		panelGrandeFormulario.add(lblNewLabel);
 		
 		JPanel panelNombre = new JPanel();
+		panelNombre.setOpaque(false);
 		panelGrandeFormulario.add(panelNombre);
 		
 		JLabel lblnombre = new JLabel("Nombre");
@@ -157,6 +191,7 @@ public class VentanaPrincipal extends JFrame {
 		nombre.setColumns(10);
 		
 		JPanel paneltelefono = new JPanel();
+		paneltelefono.setOpaque(false);
 		panelGrandeFormulario.add(paneltelefono);
 		
 		JLabel lbltelefono = new JLabel("telefono");
@@ -167,6 +202,7 @@ public class VentanaPrincipal extends JFrame {
 		telefono.setColumns(10);
 		
 		JPanel panelOperadora = new JPanel();
+		panelOperadora.setOpaque(false);
 		panelGrandeFormulario.add(panelOperadora);
 		
 		JLabel lbloperadora = new JLabel("operadora");
@@ -177,6 +213,7 @@ public class VentanaPrincipal extends JFrame {
 		operadora.setColumns(10);
 		
 		JPanel panelEmail = new JPanel();
+		panelEmail.setOpaque(false);
 		panelGrandeFormulario.add(panelEmail );
 		
 		JLabel lblEmail  = new JLabel("Email ");
@@ -187,6 +224,7 @@ public class VentanaPrincipal extends JFrame {
 		email.setColumns(10);
 		
 		JPanel panelPais = new JPanel();
+		panelPais.setOpaque(false);
 		panelGrandeFormulario.add(panelPais);
 		
 		JLabel lblPais = new JLabel("Pais");
@@ -197,6 +235,12 @@ public class VentanaPrincipal extends JFrame {
 		pais.setColumns(10);
 		
 		btnFuncionCrear = new JButton("Crear");
+		btnFuncionCrear.setFont(new Font("Dialog", Font.BOLD, 14));
+		btnFuncionCrear.setForeground(Color.WHITE);
+		btnFuncionCrear.setRolloverIcon(new ImageIcon(VentanaPrincipal.class.getResource("/img/imgBtnNuevo-rollOver.png")));
+		btnFuncionCrear.setBorder(null);
+		btnFuncionCrear.setHorizontalTextPosition(SwingConstants.CENTER);
+		btnFuncionCrear.setIcon(new ImageIcon(VentanaPrincipal.class.getResource("/img/imgBtnNuevo-simple.png")));
 		btnFuncionCrear.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -207,6 +251,12 @@ public class VentanaPrincipal extends JFrame {
 		panelGrandeFormulario.add(btnFuncionCrear);
 		
 		btnFuncionModificar = new JButton("Modificar");
+		btnFuncionModificar.setFont(new Font("Dialog", Font.BOLD, 14));
+		btnFuncionModificar.setForeground(Color.WHITE);
+		btnFuncionModificar.setRolloverIcon(new ImageIcon(VentanaPrincipal.class.getResource("/img/imgBtnNuevo-rollOver.png")));
+		btnFuncionModificar.setBorder(null);
+		btnFuncionModificar.setHorizontalTextPosition(SwingConstants.CENTER);
+		btnFuncionModificar.setIcon(new ImageIcon(VentanaPrincipal.class.getResource("/img/imgBtnNuevo-simple.png")));
 		btnFuncionModificar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -234,6 +284,9 @@ public class VentanaPrincipal extends JFrame {
 	public void setVisibleFormulario() {
 		this.panelGrandeContactos.setVisible(false);
 		this.panelGrandeFormulario.setVisible(true);
+		vaciarJTextField();
+		btnFuncionCrear.setVisible(true);
+		btnFuncionModificar.setVisible(false);
 		System.out.println(2);
 	}
 	public void agregarContacto() {
@@ -349,5 +402,16 @@ public class VentanaPrincipal extends JFrame {
 		labelIOperadora.setText("Operadora: " + a.getOperadora());
 		labelIEmail.setText("Email: " + a.getEmail());
 		labelIPais.setText("Pais: " + a.getPais());
+	}
+	public void setVisibleBtn(int i) {
+		switch (i) {
+		case 1:
+			btnFuncionCrear.setVisible(true);
+			btnFuncionModificar.setVisible(false);
+		case 2:
+			btnFuncionCrear.setVisible(false);
+			btnFuncionModificar.setVisible(true);
+		
+		}
 	}
 }
