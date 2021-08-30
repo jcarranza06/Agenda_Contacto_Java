@@ -3,6 +3,7 @@ package data;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.io.*;
 
 import logic.Main;
 
@@ -65,6 +66,27 @@ public class Agenda implements Serializable{
 	public String toString() {
 		return "Agenda [listaContactos=" + listaContactos + "]";
 	}
+	/*public void serializarAgenda() {
+		try {
+			ObjectOutputStream escribiendo_fichero = new ObjectOutputStream(new FileOutputStream("C:\\Users\\ca22a\\OneDrive\\Email attachments\\Documentos\\ALEJANDRO\\Agenda\\Fichero.txt"));
+			
+			escribiendo_fichero.writeObject(listaContactos);
+
+			escribiendo_fichero.close();
+			
+			ObjectInputStream recuperando_fichero = new ObjectInputStream(new FileInputStream("C:\\Users\\ca22a\\OneDrive\\Email attachments\\Documentos\\ALEJANDRO\\Agenda\\Fichero.txt"));
+			
+			ArrayList<Contacto> listadoContactos  = (ArrayList<Contacto>) recuperando_fichero.readObject();
+			
+			recuperando_fichero.close();	
+
+		}catch(Exception e) {
+			
+		}
+		
+	}*/
+	
 	
 	
 }
+

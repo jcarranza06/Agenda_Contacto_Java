@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Insets;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.Serializable;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -15,7 +16,7 @@ import data.Contacto;
 import logic.CargarDatos;
 import logic.Main;
 
-public class ContactoUI extends JPanel{
+public class ContactoUI extends JPanel implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	JLabel Nombre;
@@ -49,7 +50,7 @@ public class ContactoUI extends JPanel{
 		
 		JButton btnModificar = new JButton(" ");
 		btnModificar.setBorder(null);
-		btnModificar.setIcon(new ImageIcon("C:\\Users\\juane\\OneDrive\\Documentos\\AgendaContactosJava\\img\\btnSencillo-simple.jpg"));
+		//btnModificar.setIcon(new ImageIcon("/img/btnSencillo-simple.jpg"));
 		btnModificar.setMargin(new Insets(0, 0, 0, 0));
 		btnModificar.setHorizontalTextPosition(SwingConstants.CENTER);
 		btnModificar.addMouseListener(new MouseAdapter() {

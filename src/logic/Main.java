@@ -1,5 +1,6 @@
 package logic;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 
 import UI.ContactoUI;
@@ -31,6 +32,8 @@ public class Main {
 	} 
 	public static void crearContacto(String nombre, int numero, String operadora, String email, String pais, int id){
 		agenda.addContacto(new Contacto(nombre, numero, operadora, email, pais, id)); 
+		GuardarDatos.escribir(agenda.getListaContactos());
+
 	}
 	
 	public static void modificarContacto(int i){
@@ -41,11 +44,24 @@ public class Main {
 	public static void modificarContacto1(){
 		agenda.modificarContacto(variablesModificar);
 		System.out.println("agenda " + agenda);
-		
+		GuardarDatos.escribir(agenda.getListaContactos());
 	}
 	
 	public static void definirAgenda() {
-		agenda =  new Agenda();
+		Agenda lista;
+		agenda = new Agenda();
+		//agenda =  new Agenda();
+		//CargarDatos.Leer();
+		try {lista = new Agenda(CargarDatos.Leer());
+			
+		} catch (Exception e) {
+			lista = new Agenda();
+		}System.out.println("Agenda: ->"+ lista);
+		for (Contacto i : lista.getListaContactos()) {
+			crearContacto(i.getNombreContacto(),i.getTelefono(),i.getOperadora(),i.getEmail(),i.getPais(),i.getId());
+			vp.addcontador();
+			
+		}
 	}
 	
 	public static void cerrar() {
@@ -56,6 +72,8 @@ public class Main {
 	public static void eliminarContacto(int id) {
 		agenda.eliminarContacto(id);
 		vp.eliminarContactoUI(id);
+		GuardarDatos.escribir(agenda.getListaContactos());
+
 	}
 	
 			

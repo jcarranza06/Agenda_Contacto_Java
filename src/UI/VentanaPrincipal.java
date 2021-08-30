@@ -237,6 +237,7 @@ public class VentanaPrincipal extends JFrame {
 	}
 	public void agregarContacto() {
 		try {
+			comprobarId();
 			Main.crearContacto(nombre.getText(), Integer.parseInt(telefono.getText())  , operadora.getText(), email.getText(), pais.getText(), (contadorId));
 			vaciarJTextField();
 			
@@ -248,6 +249,24 @@ public class VentanaPrincipal extends JFrame {
 		}
 		System.out.println(":D");
 		
+	}
+	public void comprobarId() {
+		for (int i=0; i< Main.agenda.getListaContactos().size() ;i++) {
+			if(contadorId == Main.agenda.getListaContactos().get(i).getId() ) {
+				contadorId++;
+				
+			}
+			
+		}
+		for (int i=0; i< Main.agenda.getListaContactos().size() ;i++) {
+			if(contadorId == Main.agenda.getListaContactos().get(i).getId() ) {
+				comprobarId();
+				
+			}
+		}
+	}
+	public void addcontador() {
+		contadorId++;
 	}
 	
 	public void modificarContacto(int i) {

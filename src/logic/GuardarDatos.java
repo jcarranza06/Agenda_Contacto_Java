@@ -19,10 +19,10 @@ public class GuardarDatos {
 		try(ObjectOutputStream outStr = new ObjectOutputStream(new FileOutputStream(ruta))){
 
 			// --> Falta arreglar para mostrar los contactos ya guardados en el archivo Contacto.obj
-			ArrayList<Contacto> listaGuardada = CargarDatos.Leer();
+			/*ArrayList<Contacto> listaGuardada = CargarDatos.Leer();
 			for (Contacto contactoGuardado : listaGuardada){
 				outStr.writeObject(contactoGuardado);
-			}
+			}*/
 			//-->
 
 			for (Contacto contactoIn : cargaContactos){
