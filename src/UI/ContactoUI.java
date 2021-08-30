@@ -48,11 +48,14 @@ public class ContactoUI extends JPanel implements Serializable{
 			}
 		});
 		
-		JButton btnModificar = new JButton(" ");
+		JButton btnModificar = new JButton("m");
 		btnModificar.setBorder(null);
-		//btnModificar.setIcon(new ImageIcon("/img/btnSencillo-simple.jpg"));
-		btnModificar.setMargin(new Insets(0, 0, 0, 0));
-		btnModificar.setHorizontalTextPosition(SwingConstants.CENTER);
+		//btnModificar.setIcon(new ImageIcon("\\img\\btnSencillo-simple.jpg"));
+		//btnModificar.setIcon(new ImageIcon(Main.vp.getClass().getResource("/img/btnSencillo-simple.jpg")));
+		//btnModificar.setIcon(new ImageIcon("\\img\\btnSencillo-simple.png"));
+		//btnModificar.setIcon(new ImageIcon("C:\\Users\\juane\\OneDrive\\Documentos\\AgendaContactosJava\\img\\btnSencillo-simple.png"));
+		/*btnModificar.setMargin(new Insets(0, 0, 0, 0));
+		btnModificar.setHorizontalTextPosition(SwingConstants.CENTER);*/
 		btnModificar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -64,7 +67,7 @@ public class ContactoUI extends JPanel implements Serializable{
 		this.add(btnModificar);
 		
 		
-		JButton btnEliminar = new JButton(" ");
+		JButton btnEliminar = new JButton("e");
 		
 		btnEliminar.addMouseListener(new MouseAdapter() {
 			@Override

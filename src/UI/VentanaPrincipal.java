@@ -141,6 +141,7 @@ public class VentanaPrincipal extends JFrame {
 		panelGrandeFormulario.setBounds(0, 0, 494, 337);
 		panel_2.add(panelGrandeFormulario);
 		panelGrandeFormulario.setLayout(new BoxLayout(panelGrandeFormulario, BoxLayout.Y_AXIS));
+		panelGrandeFormulario.setVisible(false);
 		
 		JLabel lblNewLabel = new JLabel("     ");
 		panelGrandeFormulario.add(lblNewLabel);
